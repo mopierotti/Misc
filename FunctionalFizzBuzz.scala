@@ -8,7 +8,7 @@ Range(1,101).map{
 }.mkString("\n")
 
 //Excessively Generic Functional FizzBuzz Solution
-def applyTestsToSequence[A](tests:Seq[(A => Option[String])], items:Seq[A]) = {
+def applyTestsToSequence[A,B](tests:Seq[(A => Option[B])], items:Seq[A]) = {
 	items.map { item =>
 		val appliedTests = tests.flatMap(_(item))
 		if (appliedTests.size >= 1) appliedTests.mkString("") else item.toString
