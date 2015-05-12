@@ -1,5 +1,6 @@
 import com.google.common.collect.{TreeRangeMap,Range}
 
+//This implementation will always choose the first item it finds in a given range
 def itemsWithoutOverlappingRanges[A,B](items:Seq[A], itemToRange:(A => Range[B])) = {
   val rangeMap:TreeRangeMap[B, A] = TreeRangeMap.create(); //This collection is mutable
   var cleanedItems = Seq.empty[A]
