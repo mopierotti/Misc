@@ -6,7 +6,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 def batchFutures[A,B](seedData:Seq[A], futureCreator:(A => Future[B]), batchSize:Int):Future[Seq[B]] = {
   def helper(seedData:Seq[A], results:Seq[B]):Future[Seq[B]] = {
-    if(seedData.isEmpty) Future{results} else {
+    if(seedData.isEmpty) Future.successful(results) else {
       val futures = seedData.take(batchSize).map(futureCreator(_))
       val composedFutures = Future.sequence(futures)
       composedFutures.flatMap{ completedFutures =>
